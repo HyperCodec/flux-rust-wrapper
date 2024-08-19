@@ -1,22 +1,24 @@
-# flux-serverless
+# hf-text-to-image
  
-This is an unofficial wrapper for the huggingface Serverless Inference API of Flux that supports the `image` crate.
+This is an unofficial wrapper for the huggingface Serverless Inference API that supports the `image` crate.
 
 ### Installing dependency
 This crate is not published on crates.io.
 To use it as a dependency, you must add the following to your Cargo.toml:
 ```toml
-[dependencies.flux-serverless]
-git = "https://github.com/HyperCodec/flux-rust-wrapper.git"
+[dependencies.hf-text-to-image]
+git = "https://github.com/HyperCodec/hf-text-to-image.git"
 ```
 
 ### Usage
-First, create a Flux client:
+First, create a HF client:
 
 ```rust
-use flux_serverless::prelude::*;
+use hf_text_to_image::prelude::*;
 
-let client = FluxClient::new("hf_yourtoken", 1, SCHNELL);
+// use your model of choice (as long as it supports the `text-to-image` task)
+const API_URL: &str = "https://api-inference.huggingface.co/models/black-forest-labs/FLUX.1-schnell";
+let client = HFClient::new("hf_yourtoken", API_URL);
 ```
 
 Then, you construct your prompt:

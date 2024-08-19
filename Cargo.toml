@@ -1,11 +1,11 @@
 [package]
-name = "flux-serverless"
+name = "hf-text-to-image"
 version = "0.1.0"
 edition = "2021"
 license = "Apache-2.0"
 authors = ["HyperCodec"]
-repository = "https://github.com/HyperCodec/flux-rust-wrapper"
-homepage = "https://github.com/HyperCodec/flux-rust-wrapper"
+repository = "https://github.com/HyperCodec/hf-text-to-image"
+homepage = "https://github.com/HyperCodec/hf-text-to-image"
 
 
 [dependencies]

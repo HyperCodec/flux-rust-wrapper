@@ -6,28 +6,17 @@ use serde::Serialize;
 
 use crate::error::*;
 
-const API_URL_START: &str = "https://api-inference.huggingface.co/models/black-forest-labs/FLUX";
-
-pub const SCHNELL: &str = "schnell";
-pub const DEV: &str = "dev";
-
-/// A helper function for building the API url for different versions and branches.
-pub fn build_url(version: &str, branch: &str) -> String {
-    format!("{API_URL_START}.{version}-{branch}")
-}
-
-/// A struct containing information necessary to request images. Use [`FluxClient::new`] when constructing this.
+/// A struct containing information necessary to request images. Use [`HFClient::new`] when constructing this.
 #[derive(Clone, Debug)]
-pub struct FluxClient {
+pub struct HFClient {
     pub token: String,
     pub url: String,
     pub request_client: Client,
 }
 
-impl FluxClient {
-    pub fn new(token: impl Into<String>, version: u32, branch: impl AsRef<str>) -> Self {
+impl HFClient {
+    pub fn new(token: impl Into<String>, url: String) -> Self {
         let token = token.into();
-        let url = build_url(&version.to_string(), branch.as_ref());
 
         Self {
             token,
@@ -36,7 +25,7 @@ impl FluxClient {
         }
     }
 
-    /// Requests and decodes an image from the flux inference API.
+    /// Requests and decodes an image from the inference API.
     pub async fn request_inference(&self, payload: InferencePayload) -> Result<DynamicImage> {
         let request = self.request_client.post(&self.url)
             .bearer_auth(&self.token)
