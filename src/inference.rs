@@ -66,23 +66,16 @@ pub struct InferencePayload {
     pub wait_for_model: Option<bool>,
 }
 
-#[derive(Serialize, Clone, Debug)]
+/// Represents a [text-to-image](https://huggingface.co/tasks/text-to-image) parameters object.
+#[derive(Serialize, Default, Clone, Debug)]
 pub struct TTIParams {
     pub negative_prompt: Option<String>,
-    pub width: u32,
-    pub height: u32,
+
+    /// API uses a default of 1024 if None
+    pub width: Option<u32>,
+    
+    /// API uses a default of 1024 if None
+    pub height: Option<u32>,
     pub num_inference_steps: Option<u32>,
     pub guidance_scale: Option<f32>,
-}
-
-impl Default for TTIParams {
-    fn default() -> Self {
-        Self {
-            guidance_scale: None,
-            negative_prompt: None,
-            width: 1024,
-            height: 1024,
-            num_inference_steps: None,
-        }
-    }
 }
