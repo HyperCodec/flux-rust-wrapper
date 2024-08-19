@@ -7,7 +7,7 @@ This crate is not published on crates.io.
 To use it as a dependency, you must add the following to your Cargo.toml:
 ```toml
 [dependencies.flux-serverless]
-git = "https://github.com/HyperCodec/flux-rust-wrapper"
+git = "https://github.com/HyperCodec/flux-rust-wrapper.git"
 ```
 
 ### Usage
