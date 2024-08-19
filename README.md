@@ -1,6 +1,6 @@
 # hf-text-to-image
  
-This is an unofficial wrapper for the Huggingface Serverless Inference API that supports the `image` crate.
+This is an unofficial wrapper for the Huggingface Serverless Inference API that supports the `image` and `ril` crates (in their respective features).
 
 ### Installing dependency
 This crate is not published on crates.io.
@@ -8,6 +8,12 @@ To use it as a dependency, you must add the following to your Cargo.toml:
 ```toml
 [dependencies.hf-text-to-image]
 git = "https://github.com/HyperCodec/hf-text-to-image.git"
+
+# if you want to use the `image` crate
+features = ["image"]
+
+# if you want to use the `ril` crate
+features = ["ril"]
 ```
 
 ### Usage
