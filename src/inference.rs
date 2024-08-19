@@ -19,7 +19,7 @@ pub fn build_url(version: &str, branch: &str) -> String {
     format!("{API_URL_START}.{version}-{branch}")
 }
 
-/// A struct containing information necessary to request images. Use [`FluxModel::new`] when constructing this.
+/// A struct containing information necessary to request images. Use [`FluxClient::new`] when constructing this.
 #[derive(Clone, Debug)]
 pub struct FluxClient {
     pub token: String,
