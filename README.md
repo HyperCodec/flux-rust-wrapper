@@ -6,7 +6,7 @@ This is an unofficial wrapper for the huggingface Serverless Inference API of Fl
 First, create a Flux model:
 
 ```rust
-use flux_serverless::*;
+use flux_serverless::prelude::*;
 
 let model = FluxModel::new("hf_yourtoken", 1, SCHNELL);
 ```
