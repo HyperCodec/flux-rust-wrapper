@@ -20,8 +20,9 @@ pub struct HFClient {
 }
 
 impl HFClient {
-    pub fn new(token: impl Into<String>, url: String) -> Self {
+    pub fn new(token: impl Into<String>, url: impl Into<String>) -> Self {
         let token = token.into();
+        let url = url.into();
 
         Self {
             token,
