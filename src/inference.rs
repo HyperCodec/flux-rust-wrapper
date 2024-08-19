@@ -77,6 +77,10 @@ pub struct TTIParams {
     
     /// API uses a default of 1024 if None
     pub height: Option<u32>,
+
+    /// The number of denoising steps. More denoising steps usually lead to a higher quality image at the expense of slower inference.
     pub num_inference_steps: Option<u32>,
+
+    /// Guidance scale: Higher guidance scale encourages to generate images that are closely linked to the text `prompt`, usually at the expense of lower image quality.
     pub guidance_scale: Option<f32>,
 }
