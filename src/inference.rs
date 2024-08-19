@@ -55,6 +55,7 @@ impl FluxClient {
     }
 }
 
+/// The data that will be sent to the Huggingface Inference API.
 #[derive(Serialize, Default, Clone, Debug)]
 pub struct InferencePayload {
     #[serde(rename = "inputs")]
