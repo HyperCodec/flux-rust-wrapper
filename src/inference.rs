@@ -56,20 +56,6 @@ impl FluxClient {
             .decode()?;
         Ok(image)
     }
-
-    /*
-    pub async fn request_multi_inference(&self, payload: InferenceMultiPayload) -> reqwest::Result<RgbImage> {
-        let request = self.request_client.post(&self.url)
-            .bearer_auth(&self.token)
-            .body(serde_json::to_string(&payload).unwrap())
-            .build()
-            .unwrap();
-
-        let response = self.request_client.execute(request)
-            .await?
-            .error_for_status()?;
-    }
-    */
 }
 
 #[derive(Serialize, Default, Clone, Debug)]
@@ -80,14 +66,3 @@ pub struct InferencePayload {
     pub use_cache: Option<bool>,
     pub wait_for_model: Option<bool>,
 }
-
-/*
-#[derive(Serialize, Default)]
-pub struct InferenceMultiPayload {
-    #[serde(rename = "inputs")]
-    pub prompts: Vec<String>,
-
-    pub use_cache: Option<bool>,
-    pub wait_for_model: Option<bool>,
-}
-*/
