@@ -22,6 +22,6 @@ let payload = InferencePayload {
 Finally, request your image and save it.
 
 ```rust
-let image = model.request_inference(payload).await.unwrap();
-image.save("astronaut.png").unwrap();
+let image = model.request_inference(payload).await?;
+image.save("astronaut.png")?;
 ```
