@@ -1,6 +1,6 @@
 # hf-text-to-image
  
-This is an unofficial wrapper for the huggingface Serverless Inference API that supports the `image` crate.
+This is an unofficial wrapper for the Huggingface Serverless Inference API that supports the `image` crate.
 
 ### Installing dependency
 This crate is not published on crates.io.

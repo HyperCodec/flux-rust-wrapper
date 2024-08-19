@@ -25,7 +25,7 @@ impl HFClient {
         }
     }
 
-    /// Requests and decodes an image from the inference API.
+    /// Requests and decodes an image from the Inference API.
     pub async fn request_inference(&self, payload: InferencePayload) -> Result<DynamicImage> {
         let request = self.request_client.post(&self.url)
             .bearer_auth(&self.token)
@@ -44,13 +44,13 @@ impl HFClient {
     }
 }
 
-/// The data that will be sent to the Huggingface Inference API.
+/// The data that will be sent to the Inference API.
 #[derive(Serialize, Default, Clone, Debug)]
 pub struct InferencePayload {
     #[serde(rename = "inputs")]
     pub prompt: String,
 
-    pub parameters: TTIParams,
+    pub parameters: Option<TTIParams>,
 
     pub use_cache: Option<bool>,
     pub wait_for_model: Option<bool>,
