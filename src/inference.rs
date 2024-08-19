@@ -20,13 +20,14 @@ pub fn build_url(version: &str, branch: &str) -> String {
 }
 
 /// A struct containing information necessary to request images. Use [`FluxModel::new`] when constructing this.
-pub struct FluxModel {
+#[derive(Clone, Debug)]
+pub struct FluxClient {
     pub token: String,
     pub url: String,
     pub request_client: Client,
 }
 
-impl FluxModel {
+impl FluxClient {
     pub fn new(token: impl Into<String>, version: u32, branch: impl AsRef<str>) -> Self {
         let token = token.into();
         let url = build_url(&version.to_string(), branch.as_ref());
@@ -71,7 +72,7 @@ impl FluxModel {
     */
 }
 
-#[derive(Serialize, Default, Clone)]
+#[derive(Serialize, Default, Clone, Debug)]
 pub struct InferencePayload {
     #[serde(rename = "inputs")]
     pub prompt: String,

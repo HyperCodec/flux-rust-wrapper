@@ -11,12 +11,12 @@ git = "https://github.com/HyperCodec/flux-rust-wrapper.git"
 ```
 
 ### Usage
-First, create a Flux model:
+First, create a Flux client:
 
 ```rust
 use flux_serverless::prelude::*;
 
-let model = FluxModel::new("hf_yourtoken", 1, SCHNELL);
+let client = FluxClient::new("hf_yourtoken", 1, SCHNELL);
 ```
 
 Then, you construct your prompt:
@@ -30,7 +30,7 @@ let payload = InferencePayload {
 Finally, request your image and save it.
 
 ```rust
-let image = model.request_inference(payload).await?;
+let image = client.request_inference(payload).await?;
 image.save("astronaut.png")?;
 ```
 
