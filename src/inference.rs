@@ -70,6 +70,7 @@ pub struct InferencePayload {
 /// Represents a [text-to-image](https://huggingface.co/tasks/text-to-image) parameters object.
 #[derive(Serialize, Default, Clone, Debug)]
 pub struct TTIParams {
+    /// An optional negative prompt for the image generation.
     pub negative_prompt: Option<String>,
 
     /// API uses a default of 1024 if None
