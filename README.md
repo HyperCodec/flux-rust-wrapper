@@ -11,4 +11,17 @@ use flux_serverless::*;
 let model = FluxModel::new("hf_yourtoken", 1, SCHNELL);
 ```
 
-Then, you can prompt the 
+Then, you construct your prompt:
+```rust
+let payload = InferencePayload {
+    prompt: "Astronaut riding a horse",
+    ..default()
+}
+```
+
+Finally, request your image and save it.
+
+```rust
+let image = model.request_inference(payload).await.unwrap();
+image.save("astronaut.png").unwrap();
+```
