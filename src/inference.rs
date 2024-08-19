@@ -1,10 +1,15 @@
 use std::io::Cursor;
 
+#[cfg(feature = "image")]
 use image::{DynamicImage, ImageReader};
+
 use reqwest::Client;
 use serde::Serialize;
 
 use crate::error::*;
+
+#[cfg(feature = "ril")]
+use ril::{Image, Rgb, ImageFormat};
 
 /// A struct containing information necessary to request images. Use [`HFClient::new`] when constructing this.
 #[derive(Clone, Debug)]
@@ -26,6 +31,7 @@ impl HFClient {
     }
 
     /// Requests and decodes an image from the Inference API.
+    #[cfg(feature = "image")]
     pub async fn request_inference(&self, payload: InferencePayload) -> Result<DynamicImage> {
         let request = self.request_client.post(&self.url)
             .bearer_auth(&self.token)
@@ -40,6 +46,23 @@ impl HFClient {
         let image = ImageReader::new(Cursor::new(raw))
             .with_guessed_format()?
             .decode()?;
+        Ok(image)
+    }
+
+    /// Requests and decodes an image from the Inference API.
+    #[cfg(feature = "ril")]
+    pub async fn request_inference(&self, payload: InferencePayload) -> Result<Image<Rgb>> {
+        let request = self.request_client.post(&self.url)
+            .bearer_auth(&self.token)
+            .body(serde_json::to_string(&payload)?)
+            .build()?;
+
+        let response = self.request_client.execute(request)
+            .await?
+            .error_for_status()?;
+
+        let raw = response.bytes().await?;
+        let image = Image::from_reader(ImageFormat::Png, Cursor::new(raw))?;
         Ok(image)
     }
 }
