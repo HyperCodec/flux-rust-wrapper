@@ -9,7 +9,7 @@ use serde::Serialize;
 use crate::error::*;
 
 #[cfg(feature = "ril")]
-use ril::{Image, Rgb, ImageFormat};
+use ril::{Image, ImageFormat, Rgb};
 
 /// A struct containing information necessary to request images. Use [`HFClient::new`] when constructing this.
 #[derive(Clone, Debug)]
@@ -33,12 +33,16 @@ impl HFClient {
     /// Requests and decodes an image from the Inference API.
     #[cfg(feature = "image")]
     pub async fn request_inference(&self, payload: InferencePayload) -> Result<DynamicImage> {
-        let request = self.request_client.post(&self.url)
+        let request = self
+            .request_client
+            .post(&self.url)
             .bearer_auth(&self.token)
             .body(serde_json::to_string(&payload)?)
             .build()?;
 
-        let response = self.request_client.execute(request)
+        let response = self
+            .request_client
+            .execute(request)
             .await?
             .error_for_status()?;
 
@@ -52,12 +56,16 @@ impl HFClient {
     /// Requests and decodes an image from the Inference API.
     #[cfg(feature = "ril")]
     pub async fn request_inference(&self, payload: InferencePayload) -> Result<Image<Rgb>> {
-        let request = self.request_client.post(&self.url)
+        let request = self
+            .request_client
+            .post(&self.url)
             .bearer_auth(&self.token)
             .body(serde_json::to_string(&payload)?)
             .build()?;
 
-        let response = self.request_client.execute(request)
+        let response = self
+            .request_client
+            .execute(request)
             .await?
             .error_for_status()?;
 
@@ -87,7 +95,7 @@ pub struct TTIParams {
 
     /// API uses a default of 1024 if None
     pub width: Option<u32>,
-    
+
     /// API uses a default of 1024 if None
     pub height: Option<u32>,
 

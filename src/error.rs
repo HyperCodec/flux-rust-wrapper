@@ -18,7 +18,6 @@ pub enum Error {
 
     #[error("Serialization error: {0}")]
     Json(#[from] serde_json::Error),
-
 }
 
 pub type Result<T> = std::result::Result<T, Error>;
