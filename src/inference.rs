@@ -67,7 +67,7 @@ pub struct InferencePayload {
     pub wait_for_model: Option<bool>,
 }
 
-/// Represents a [text-to-image](https://huggingface.co/tasks/text-to-image) parameters object.
+/// Represents a [text-to-image](https://huggingface.co/tasks/text-to-image) arguments object.
 #[derive(Serialize, Default, Clone, Debug)]
 pub struct TTIParams {
     /// An optional negative prompt for the image generation.
