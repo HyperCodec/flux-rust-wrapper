@@ -29,3 +29,6 @@ Finally, request your image and save it.
 let image = model.request_inference(payload).await?;
 image.save("astronaut.png")?;
 ```
+
+### License
+This crate uses the `Apache 2.0` license.
