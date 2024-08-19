@@ -11,9 +11,6 @@ const API_URL_START: &str = "https://api-inference.huggingface.co/models/black-f
 pub const SCHNELL: &str = "schnell";
 pub const DEV: &str = "dev";
 
-pub const IMAGE_WIDTH: u32 = 1024;
-pub const IMAGE_HEIGHT: u32 = 1024;
-
 /// A helper function for building the API url for different versions and branches.
 pub fn build_url(version: &str, branch: &str) -> String {
     format!("{API_URL_START}.{version}-{branch}")
@@ -63,6 +60,29 @@ pub struct InferencePayload {
     #[serde(rename = "inputs")]
     pub prompt: String,
 
+    pub parameters: TTIParams,
+
     pub use_cache: Option<bool>,
     pub wait_for_model: Option<bool>,
+}
+
+#[derive(Serialize, Clone, Debug)]
+pub struct TTIParams {
+    pub negative_prompt: Option<String>,
+    pub width: u32,
+    pub height: u32,
+    pub num_inference_steps: Option<u32>,
+    pub guidance_scale: Option<f32>,
+}
+
+impl Default for TTIParams {
+    fn default() -> Self {
+        Self {
+            guidance_scale: None,
+            negative_prompt: None,
+            width: 1024,
+            height: 1024,
+            num_inference_steps: None,
+        }
+    }
 }
