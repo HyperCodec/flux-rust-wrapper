@@ -32,7 +32,7 @@ Then, you construct your prompt:
 let payload = InferencePayload {
     prompt: "Astronaut riding a horse".into(),
     ..default()
-}
+};
 ```
 
 Finally, request your image and save it.
