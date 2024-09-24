@@ -30,7 +30,7 @@ let client = HFClient::new("hf_yourtoken", API_URL);
 Then, you construct your prompt:
 ```rust
 let payload = InferencePayload {
-    prompt: "Astronaut riding a horse",
+    prompt: "Astronaut riding a horse".into(),
     ..default()
 }
 ```
